@@ -1,0 +1,12 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "com.m1n1m0th.apuglifix.mixin",
+    "compatibilityLevel": "JAVA_17",
+    "mixins": [
+        "EntityConditionsCompatMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}

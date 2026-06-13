@@ -1,0 +1,21 @@
+{
+    "schemaVersion": 1,
+    "id": "apugli-fixer",
+    "version": "4.0.2",
+    "name": "Apugli Fixer",
+    "description": "Adds missing EnchantmentHelper call sites to Apoli's EntityConditions for Apugli redirect compatibility on 1.20.1.",
+    "authors": ["m1n1m0th"],
+    "contact": {},
+    "license": "MIT",
+    "environment": "*",
+    "entrypoints": {},
+    "depends": {
+        "fabricloader": ">=0.14.0",
+        "minecraft": "1.20.1",
+        "apugli": ">=2.10.0",
+        "apoli": ">=2.9.0"
+    },
+    "mixins": [
+        "apugli-fixer.mixins.json"
+    ]
+}

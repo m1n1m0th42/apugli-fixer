@@ -1,0 +1,54 @@
+plugins {
+    id 'fabric-loom' version '1.0-SNAPSHOT'
+    id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+    // Compile-only dependencies (provided at runtime by the modpack).
+    // Place jars in libs/. See README.md for setup instructions.
+    modCompileOnly fileTree(dir: 'libs', include: ['apoli-*.jar'])
+    modCompileOnly fileTree(dir: 'libs', include: ['calio-*.jar'])
+    modCompileOnly fileTree(dir: 'libs', include: ['Apugli-*.jar'])
+}
+
+processResources {
+    inputs.property "version", project.version
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 17
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+    withSourcesJar()
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.archivesBaseName}" }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
